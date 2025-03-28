@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIVERE - Login</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .active {
+            background-color: rgba(255,255,255,0.2);
+            font-weight: bold;
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 450px;
+            width: 100%;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header img {
+            max-width: 80px;
+            margin-bottom: 15px;
+        }
+        
+        .login-header h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .remember-me input {
+            width: auto;
+        }
+        
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #777;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .divider span {
+            padding: 0 10px;
+        }
+        
+        .user-type-selector {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .user-type {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0 5px;
+        }
+        
+        .user-type:hover {
+            border-color: var(--primary);
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .user-type.active {
+            border-color: var(--primary);
+            background-color: rgba(52, 152, 219, 0.1);
+            font-weight: bold;
+        }
+        
+        .user-type i {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .register-link a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            padding: 15px;
+            margin: 20px 0;
+            background-color: rgba(231, 76, 60, 0.2);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            border-radius: 5px;
+            display: none;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--primary);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                z-index: 999;
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.5rem;
+                padding: 10px;
+            }
+            
+            .close-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span>VIVERE</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" id="home-link">Home</a>
+                <a href="schools.html" id="schools-link">Schools</a>
+                <a href="police.html" id="police-link">Police</a>
+                <a href="community.html" id="community-link">Community</a>
+                <a href="report.html" id="report-link">Report</a>
+                <a href="resourses.html" id="resources-link">Resources</a>
+                <a href="login.html" class="active" id="login-link">Login</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+        <div class="mobile-menu">
+            <button class="close-menu">✕</button>
+            <a href="index.html" id="home-link-mobile">Home</a>
+            <a href="schools.html" id="schools-link-mobile">Schools</a>
+            <a href="police.html" id="police-link-mobile">Police</a>
+            <a href="community.html" id="community-link-mobile">Community</a>
+            <a href="report.html" id="report-link-mobile">Report</a>
+            <a href="resourses.html" id="resources-link-mobile">Resources</a>
+            <a href="login.html" class="active" id="login-link-mobile">Login</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="container">
+            <form id="login-form">
+                <div class="login-header">
+                    <img src="/api/placeholder/80/80" alt="VIVERE Logo">
+                    <h1>VIVERE Login</h1>
+                    <p>Access your account to help create a drug-free community</p>
+                </div>
+                
+                <div class="user-type-selector">
+                    <div class="user-type active" id="school-type">
+                        <i>🏫</i>
+                        <span>School</span>
+                    </div>
+                    <div class="user-type" id="police-type">
+                        <i>👮</i>
+                        <span>Police</span>
+                    </div>
+                    <div class="user-type" id="community-type">
+                        <i>🏘️</i>
+                        <span>Community</span>
+                    </div>
+                    <div class="user-type" id="admin-type">
+                        <i>⚙️</i>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                
+                <div class="error-message" id="login-error">
+                    Invalid username or password. Please try again.
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">Username / ID</label>
+                    <input type="text" id="username" required placeholder="Enter your username or ID">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter your password">
+                </div>
+                
+                <div class="login-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Sign In</button>
+                
+                <div class="divider">
+                    <span>or</span>
+                </div>
+                
+                <a href="#" class="btn btn-secondary">Request Access</a>
+                
+                <div class="register-link">
+                    <p>Need help accessing your account? <a href="#">Contact Support</a></p>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 VIVERE - To Live Drug-Free. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Contact</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for the login page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const closeMenuBtn = document.querySelector('.close-menu');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.style.transform = 'translateX(0)';
+                });
+            }
+            
+            if (closeMenuBtn) {
+                closeMenuBtn.addEventListener('click', function() {
+                    mobileMenu.style.transform = 'translateX(-100%)';
+                });
+            }
+            
+            // User type selector
+            const userTypes = document.querySelectorAll('.user-type');
+            
+            userTypes.forEach(type => {
+                type.addEventListener('click', function() {
+                    userTypes.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Form submission
+            const loginForm = document.getElementById('login-form');
+            const errorMessage = document.getElementById('login-error');
+            
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('username').value;
+                    const password = document.getElementById('password').value;
+                    
+                    // Simple validation
+                    if (!username || !password) {
+                        errorMessage.style.display = 'block';
+                        return;
+                    }
+                    
+                    // In a real application, you would send these credentials to the server
+                    // For demo purposes, we'll just simulate a login
+                    
+                    // Get the active user type
+                    const activeType = document.querySelector('.user-type.active').id;
+                    
+                    // Show loading state
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    const originalText = submitButton.textContent;
+                    submitButton.textContent = 'Signing in...';
+                    submitButton.disabled = true;
+                    
+                    // Simulate server request
+                    setTimeout(() => {
+                        // In a real app, this would be handled by server response
+                        if (username === 'demo' && password === 'password') {
+                            // Successful login - redirect based on user type
+                            switch(activeType) {
+                                case 'school-type':
+                                    window.location.href = '#schools-page';
+                                    break;
+                                case 'police-type':
+                                    window.location.href = '#police-page';
+                                    break;
+                                case 'community-type':
+                                    window.location.href = '#community-page';
+                                    break;
+                                case 'admin-type':
+                                    window.location.href = '#admin-dashboard';
+                                    break;
+                                default:
+                                    window.location.href = '#home-page';
+                            }
+                        } else {
+                            // Failed login
+                            errorMessage.style.display = 'block';
+                            submitButton.textContent = originalText;
+                            submitButton.disabled = false;
+                        }
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

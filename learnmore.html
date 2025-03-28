@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn More - VIVERE</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+            --accent: #9b59b6;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .active {
+            background-color: rgba(255,255,255,0.2);
+            font-weight: bold;
+        }
+        
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/400') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .info-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .info-card-img {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .info-card-content {
+            padding: 20px;
+        }
+        
+        .info-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .process-steps {
+            counter-reset: step-counter;
+            position: relative;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: calc(25px + 7.5px);
+            width: 2px;
+            background-color: var(--primary);
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            z-index: 1;
+            margin-right: 20px;
+        }
+        
+        .step-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex-grow: 1;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-description {
+            color: #777;
+        }
+        
+        .quote-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0;
+            margin: 60px 0;
+        }
+        
+        .quote {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.5rem;
+        }
+        
+        .quote-author {
+            margin-top: 20px;
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            padding: 15px 20px;
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .team-member-img {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .team-member-info {
+            padding: 20px;
+        }
+        
+        .team-member-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .team-member-role {
+            color: #777;
+            margin-bottom: 15px;
+        }
+        
+        .call-to-action {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+            margin-top: 60px;
+        }
+        
+        .call-to-action h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .call-to-action p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: calc(50% - 30px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            width: 120px;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 5px;
+            top: 0;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-date {
+            left: calc(-120px - 30px);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-date {
+            right: calc(-120px - 30px);
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 15px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -44px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -44px;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--primary);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                z-index: 999;
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.5rem;
+                padding: 10px;
+            }
+            
+            .close-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 50px);
+                margin-left: 50px !important;
+            }
+            
+            .timeline-date {
+                position: relative;
+                left: auto !important;
+                right: auto !important;
+                margin-bottom: 10px;
+                width: auto;
+                display: inline-block;
+            }
+            
+            .timeline-content::before {
+                left: -40px !important;
+                right: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span>VIVERE</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" id="home-link">Home</a>
+                <a href="schools.html" id="schools-link">Schools</a>
+                <a href="police.html" id="police-link">Police</a>
+                <a href="community.html" id="community-link">Community</a>
+                <a href="report.html" id="report-link">Report</a>
+                <a href="learnmore.html" class="active" id="learn-more-link">Learn More</a>
+                <a href="login.html" id="login-link">Login</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+        <div class="mobile-menu">
+            <button class="close-menu">✕</button>
+            <a href="index.html" id="home-link-mobile">Home</a>
+            <a href="schools.html" id="schools-link-mobile">Schools</a>
+            <a href="police.html" id="police-link-mobile">Police</a>
+            <a href="community.html" id="community-link-mobile">Community</a>
+            <a href="report.html" id="report-link-mobile">Report</a>
+            <a href="learnmore.html" class="active" id="learn-more-link-mobile">Learn More</a>
+            <a href="login.html" id="login-link-mobile">Login</a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Understanding VIVERE</h1>
+            <p>Our comprehensive approach to youth drug prevention through collaboration, data, and community action</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-title">
+                <h2>About VIVERE</h2>
+                <p>Working together for a drug-free future</p>
+            </div>
+            <div class="content">
+                <p>VIVERE (Latin for "to live") is a pioneering data-driven platform designed to combat drug use among children and youth through collaborative action between schools, law enforcement, community organizations, and concerned citizens. Our approach is built on three core principles:</p>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-img" style="background-color: rgba(52, 152, 219, 0.2);">🔍</div>
+                        <div class="info-card-content">
+                            <h3>Early Detection</h3>
+                            <p>By aggregating anonymized data from multiple sources, VIVERE helps identify emerging drug trends, high-risk areas, and vulnerable populations before problems escalate.</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-img" style="background-color: rgba(46, 204, 113, 0.2);">🤝</div>
+                        <div class="info-card-content">
+                            <h3>Collaborative Intervention</h3>
+                            <p>VIVERE bridges traditional silos between schools, law enforcement, and community organizations to facilitate coordinated responses tailored to each community's specific needs.</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-img" style="background-color: rgba(155, 89, 182, 0.2);">📊</div>
+                        <div class="info-card-content">
+                            <h3>Evidence-Based Prevention</h3>
+                            <p>Our platform enables stakeholders to measure program effectiveness, optimize resource allocation, and adapt strategies based on real-world outcomes.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p>Launched in 2023, VIVERE has already helped dozens of communities implement more effective drug prevention strategies and has shown promising results in reducing youth drug experimentation and addiction.</p>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works">
+            <div class="section-title">
+                <h2>How VIVERE Works</h2>
+                <p>A collaborative approach to youth drug prevention</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Data Collection</h3>
+                        <p>Schools, law enforcement agencies, community organizations, and citizens contribute anonymized data about drug-related incidents, trends, and concerns through secure, role-specific portals.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Pattern Analysis</h3>
+                        <p>VIVERE's advanced analytics engine identifies patterns, hotspots, and emerging trends across data sources, generating insights that would be impossible to detect through isolated reporting systems.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Coordinated Response</h3>
+                        <p>Stakeholders receive tailored alerts and recommendations based on their role and jurisdiction, enabling rapid, coordinated responses to emerging threats.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Prevention Program Implementation</h3>
+                        <p>Community organizations and schools implement targeted prevention programs informed by real-time data, focusing resources where they're needed most.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Impact Measurement</h3>
+                        <p>The platform continuously monitors outcomes, allowing stakeholders to measure program effectiveness, optimize strategies, and demonstrate return on investment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Stakeholders Section -->
+        <section id="stakeholders">
+            <div class="section-title">
+                <h2>Key Stakeholders</h2>
+                <p>Working together for greater impact</p>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-img" style="background-color: rgba(52, 152, 219, 0.2);">🏫</div>
+                    <div class="info-card-content">
+                        <h3>Schools</h3>
+                        <p>Schools play a critical role in early detection and prevention, with faculty and staff often being the first to notice behavioral changes. Through VIVERE, schools can:</p>
+                        <ul>
+                            <li>Upload anonymized data on incidents and trends</li>
+                            <li>Access evidence-based prevention curricula</li>
+                            <li>Coordinate with other stakeholders on intervention strategies</li>
+                            <li>Track the effectiveness of school-based prevention programs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-img" style="background-color: rgba(46, 204, 113, 0.2);">👮</div>
+                    <div class="info-card-content">
+                        <h3>Law Enforcement</h3>
+                        <p>Police departments provide critical insights into drug distribution patterns and community-level threats. Through VIVERE, law enforcement can:</p>
+                        <ul>
+                            <li>Share anonymized data on drug-related arrests and seizures</li>
+                            <li>Identify high-risk areas for targeted patrols</li>
+                            <li>Collaborate with schools on prevention programs</li>
+                            <li>Focus resources on major suppliers rather than users</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-img" style="background-color: rgba(155, 89, 182, 0.2);">🏘️</div>
+                    <div class="info-card-content">
+                        <h3>Community Organizations</h3>
+                        <p>Local nonprofits, faith-based organizations, and youth groups provide essential prevention and support services. Through VIVERE, these organizations can:</p>
+                        <ul>
+                            <li>Coordinate activities to avoid duplication of efforts</li>
+                            <li>Target programs based on community-specific data</li>
+                            <li>Access funding opportunities and program resources</li>
+                            <li>Demonstrate program impact to stakeholders and funders</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-img" style="background-color: rgba(230, 126, 34, 0.2);">👥</div>
+                    <div class="info-card-content">
+                        <h3>Citizens</h3>
+                        <p>Parents, neighbors, and concerned citizens are essential eyes and ears in the community. Through VIVERE, citizens can:</p>
+                        <ul>
+                            <li>Submit anonymous reports about suspicious activities</li>
+                            <li>Access educational resources about drug prevention</li>
+                            <li>Find support services for at-risk youth</li>
+                            <li>Volunteer for community prevention initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section id="impact">
+            <div class="section-title">
+                <h2>Our Impact</h2>
+                <p>Making a difference in communities nationwide</p>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">43%</div>
+                    <div class="stat-description">Average reduction in youth drug incidents in participating communities</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">87</div>
+                    <div class="stat-description">Communities actively using the VIVERE platform</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24,000+</div>
+                    <div class="stat-description">Youth reached through targeted prevention programs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$3.2M</div>
+                    <div class="stat-description">Estimated savings in healthcare and enforcement costs</div>
+                </div>
+            </div>
+            
+            <div class="quote-section">
+                <div class="container">
+                    <div class="quote">
+                        "VIVERE has transformed how our community approaches drug prevention. Instead of working in isolation, we now have a coordinated system where everyone plays a part. The results speak for themselves - we've seen a 38% reduction in youth drug incidents in just 18 months."
+                        <div class="quote-author">— Sarah Johnson, School District Superintendent</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <h3>Platform Launch</h3>
+                        <p>VIVERE launched as a pilot program in 5 communities across the country.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <h3>Initial Results</h3>
+                        <p>First analysis showed a 27% reduction in youth drug incidents in pilot communities.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3>National Expansion</h3>
+                        <p>VIVERE expanded to 50 communities nationwide with federal grant support.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3>Enhanced Analytics</h3>
+                        <p>Launched predictive analytics feature to identify at-risk populations earlier.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <h3>Today</h3>
+                        <p>Now serving 87 communities with plans to expand nationwide by 2026.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about the VIVERE platform</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <div class="faq-question">How is data privacy protected on the VIVERE platform?</div>
+                    <div class="faq-answer">
+                        <p>VIVERE employs multiple layers of security to protect sensitive information:</p>
+                        <ul>
+                            <li>All personally identifiable information is anonymized before being entered into the system</li>
+                            <li>Data is encrypted both in transit and at rest using industry-standard encryption</li>
+                            <li>Role-based access controls ensure users only see information relevant to their role</li>
+                            <li>Regular security audits and compliance reviews are conducted</li>
+                            <li>The platform is fully HIPAA and FERPA compliant</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Who can access the VIVERE platform?</div>
+                    <div class="faq-answer">
+                        <p>Access to VIVERE is limited to authorized representatives from:</p>
+                        <ul>
+                            <li>K-12 schools and school districts</li>
+                            <li>Law enforcement agencies</li>
+                            <li>Registered community organizations</li>
+                            <li>Public health departments</li>
+                        </ul>
+                        <p>Each organization undergoes a verification process before receiving access credentials. The public reporting portal is available to all citizens without registration, though anonymous reports are reviewed before being incorporated into the system.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is there a cost to use VIVERE?</div>
+                    <div class="faq-answer">
+                        <p>VIVERE operates on a tiered pricing model:</p>
+                        <ul>
+                            <li>Basic access is free for all verified organizations</li>
+                            <li>Premium features (advanced analytics, custom reporting, API access) are available through a subscription model</li>
+                            <li

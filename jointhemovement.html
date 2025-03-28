@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIVERE - Join The Movement</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+            --accent: #9b59b6;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .active {
+            background-color: rgba(255,255,255,0.2);
+            font-weight: bold;
+        }
+        
+        .hero {
+            padding: 60px 0;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #777;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .ways-to-help {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .help-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .help-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .help-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .testimonials {
+            margin: 60px 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            position: relative;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .testimonial-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .stat-card {
+            background-color: var(--primary);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .stat-card:nth-child(2) {
+            background-color: var(--secondary);
+        }
+        
+        .stat-card:nth-child(3) {
+            background-color: var(--accent);
+        }
+        
+        .stat-card:nth-child(4) {
+            background-color: var(--dark);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .partners {
+            margin: 60px 0;
+        }
+        
+        .partner-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .partner-logo {
+            width: 150px;
+            height: 80px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            filter: grayscale(100%);
+            transition: all 0.3s;
+        }
+        
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+        
+        .faq {
+            margin: 60px 0;
+        }
+        
+        .accordion {
+            margin-top: 30px;
+        }
+        
+        .accordion-item {
+            margin-bottom: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion-content {
+            background-color: white;
+            padding: 20px;
+            display: none;
+        }
+        
+        .accordion-content.active {
+            display: block;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .success-message, .error-message {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            background-color: rgba(46, 204, 113, 0.2);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .error-message {
+            background-color: rgba(231, 76, 60, 0.2);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--primary);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                z-index: 999;
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.5rem;
+                padding: 10px;
+            }
+            
+            .close-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span>VIVERE</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" id="home-link">Home</a>
+                <a href="schools.html" id="schools-link">Schools</a>
+                <a href="police.html" id="police-link">Police</a>
+                <a href="community.html" id="community-link" class="active">Community</a>
+                <a href="report.html" id="report-link">Report</a>
+                <a href="resourses.html" id="resources-link">Resources</a>
+                <a href="login.html" id="login-link">Login</a>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+        <div class="mobile-menu">
+            <button class="close-menu">✕</button>
+            <a href="index.html" id="home-link-mobile">Home</a>
+            <a href="schools.html" id="schools-link-mobile">Schools</a>
+            <a href="police.html" id="police-link-mobile">Police</a>
+            <a href="community.html" id="community-link-mobile" class="active">Community</a>
+            <a href="report.html" id="report-link-mobile">Report</a>
+            <a href="resourses.html" id="resources-link-mobile">Resources</a>
+            <a href="login.html" id="login-link-mobile">Login</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Join The Movement</h1>
+                <p>Be part of the solution. Together, we can create drug-free communities and protect our youth.</p>
+                <a href="#volunteer-form" class="btn btn-accent">Volunteer Today</a>
+                <a href="#ways-to-help" class="btn btn-secondary">Ways to Help</a>
+            </div>
+        </section>
+
+        <!-- Our Impact Section -->
+        <section class="container">
+            <div class="section-title">
+                <h2>Our Impact</h2>
+                <p>See the difference we're making together in our communities</p>
+            </div>
+            
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <div class="stat-number">4,500+</div>
+                    <p>Youth reached through prevention programs</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">32</div>
+                    <p>Active community programs</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">17</div>
+                    <p>Partner organizations</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">43%
